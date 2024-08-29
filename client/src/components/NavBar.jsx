@@ -110,7 +110,7 @@ const MobileMenu = styled.ul`
   padding: 0 6px;
   list-style: none;
   width: 90%;
-  padding: 12px 40px 24px 40px;
+  padding: 12px 20px 24px 20px;
   background: ${({ theme }) => theme.bg};
   position: absolute;
   top: 80px;
