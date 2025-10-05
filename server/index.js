@@ -29,6 +29,10 @@ app.get("/", async (req, res) => {
   res.status(200).json({ message: "Default path accessed" });
 });
 
+app.get("/def", async (req, res) => {
+  res.status(200).json({ message: "Def" });
+});
+
 const connectDB = () => {
   mongoose.set("strictQuery", true);
   mongoose
