@@ -87,8 +87,8 @@ const SignUp = () => {
         />
         <TextInput
           label="Password"
-          placeholder="JohnPrasad@example.com"
-          value={email}
+          placeholder="pass@1234"
+          value={password}
           handelChange={(e) => setPassword(e.target.value)}
         />
         <Button2
