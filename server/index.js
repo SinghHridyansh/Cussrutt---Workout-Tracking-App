@@ -33,23 +33,50 @@ app.get("/def", async (req, res) => {
   res.status(200).json({ message: "Def" });
 });
 
+// const connectDB = () => {
+//   mongoose.set("strictQuery", true);
+//   mongoose
+//     .connect(process.env.MONGODB_URL)
+//     .then(() => console.log("Connected to DB"))
+//     .catch((err) => {
+//       console.error("Connection with failed");
+//       console.error(err);
+//     });
+// };
+
+// const startServer = async () => {
+//   try {
+//     await connectDB();
+//     app.listen(port, () => console.log(`Server started on port ${port}`));
+//   } catch (error) {
+//     console.log(error);
+//   }
+// };
+
 const connectDB = () => {
-  mongoose.set("strictQuery", true);
-  mongoose
-    .connect(process.env.MONGODB_URL)
-    .then(() => console.log("Connected to DB"))
-    .catch((err) => {
-      console.error("Connection with failed");
-      console.error(err);
-    });
+  return new Promise((resolve, reject) => {
+    mongoose.set("strictQuery", true);
+    mongoose
+      .connect(process.env.MONGODB_URL)
+      .then(() => {
+        console.log("Connected to MongoDB successfully");
+        resolve();
+      })
+      .catch((err) => {
+        console.error("MongoDB connection failed:");
+        console.error(err);
+        reject(err);
+      });
+  });
 };
 
 const startServer = async () => {
   try {
-    connectDB();
+    await connectDB();
     app.listen(port, () => console.log(`Server started on port ${port}`));
   } catch (error) {
     console.log(error);
+    process.exit(1);
   }
 };
 
